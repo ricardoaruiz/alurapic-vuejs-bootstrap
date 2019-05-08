@@ -1,0 +1,11 @@
+.card-container {
+    width: 98%;
+    margin: 0 auto;
+}
+
+@media(max-width: 768px) {
+    .card-container {
+        width: 100%;
+        text-align: center;
+    }
+}

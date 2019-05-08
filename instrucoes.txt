@@ -1,0 +1,34 @@
+- Para criar o projeto rodamos o comando:
+  ./node_modules/@vue/cli/bin/vue.js create alurapic-bootstrap
+
+- Na tela que será exibida escolhemos a segunda opção para customizar a criação
+Dentre as opções existenstes escolhemos apenas a de rota
+
+- Após o projeto ser criado rodamos o seguinte comando para subrir a app
+  npm run serve
+
+====Bootstrap====
+- Agora vamos instalar o bootstrap
+  npm i bootstrap
+  npm i jquery
+  npm i popper.js
+
+- Após as instalações acima fazer os seguintes imports em main.js
+  import 'jquery/dist/jquery.js'
+  import 'popper.js/dist/esm/popper.js'
+  import 'bootstrap/dist/js/bootstrap.js'
+  import 'bootstrap/dist/css/bootstrap.css';
+  window.$ = require('jquery');
+
+- Instalando o VueResourc
+  npm i vue-resource
+
+====VueResource====
+- Configurando o VueResource em main.js
+  import VueResource from 'vue-resource';
+  Vue.use(VueResource);
+  Vue.http.options.root = 'http://localhost:3000';
+
+====Para utilizar o Sass====
+npm i sass-loader
+npm i node-sass
