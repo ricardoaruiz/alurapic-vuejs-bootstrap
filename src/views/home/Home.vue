@@ -1,5 +1,8 @@
 <template>
     <div>
+        <!-- Toast -->
+        <Toast id="toastHome"/>
+
         <!-- Título da página -->
         <h1 class="text-center mb-4 mt-4">Fotos</h1>
 
@@ -15,7 +18,7 @@
                         />
             </div>
             <div class="col-md-1">
-                <button class="btn btn-primary btn-limpa-filtro">Limpar</button>
+                <button class="btn btn-primary btn-limpa-filtro" @click="limparFiltro()">Limpar</button>
             </div>
         </div>
 
@@ -48,20 +51,24 @@
                confirm="Sim"
                @confirmed="confirmaRemoverFoto()"
                @canceled="cancelaRemoverFoto()"/>
+
     </div>
 </template>
 
 <script>
     import FotoService from '@/services/FotoService';
-    import CardDeck from '@/components/card-deck/CardDeck';
-    import Card from '@/components/card/Card';
-    import Modal from '@/components/modal/Modal';
+    import CardDeck from '@/components/card-deck/CardDeck.vue';
+    import Card from '@/components/card/Card.vue';
+    import Toast from '@/components/toast/Toast.vue';
+    import ToastService from '@/components/toast/ToastService';
+    import Modal from '@/components/modal/Modal.vue';
     import '@/components/modal/ModalDirective';
 
     export default {
         components: {
             CardDeck,
             Card,
+            Toast,
             Modal
         },
         computed: {
@@ -102,6 +109,7 @@
                         const posicaoFoto = this.fotos.indexOf(this.fotoSelecionada);
                         this.fotos.splice(posicaoFoto, 1);
                         this.cancelaRemoverFoto();
+                        ToastService.success('toastHome', 'Foto removida com sucesso', 'Exclusão de foto');
                     })
                     .catch(error => console.log(error.message));
             },
@@ -110,6 +118,9 @@
             },
             alterarFoto(foto) {
                 this.$router.push({ name: 'alteracao', params: { id : foto._id }})
+            },
+            limparFiltro() {
+                this.filtro = '';
             }
         }
     }

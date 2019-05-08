@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import { maxHeaderSize } from 'http';
     export default {
         props: {
             id: {

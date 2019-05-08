@@ -1,5 +1,8 @@
 <template>
     <div>
+        <!-- Toast -->
+        <Toast :id="idToast"/>
+
         <!-- Título da págin -->
         <h1 class="text-center mb-4 mt-4">Cadastro</h1>
         
@@ -73,13 +76,16 @@
     import FotoService from '@/services/FotoService';
     import Card from '@/components/card/Card';
     import Modal from '@/components/modal/Modal';
+    import Toast from '@/components/toast/Toast.vue';
+    import ToastService from '@/components/toast/ToastService';
     import ModalService from '@/components/modal/ModalService';
     import Foto from '@/domains/Foto';
 
     export default {
         components: {
             Card,
-            Modal
+            Modal,
+            Toast
         },
         beforeCreate() {
             this.fotoService = new FotoService(this.$resource);
@@ -95,7 +101,8 @@
             return {
                 foto: new Foto(),
                 id: this.$route.params.id,
-                idModalConfirmacao: 'confirmaAlteracaoFoto'
+                idModalConfirmacao: 'confirmaAlteracaoFoto',
+                idToast: 'toastCadastro'
             }
         },
         computed: {
@@ -124,18 +131,23 @@
             inserirFoto() {
                 this.fotoService.salvar(this.foto)
                     .then( () => {
-                        console.log('Folto salva com sucesso');
                         this.limpar();
+                        ToastService.success(this.idToast, 'Foto inserida com sucesso', 'Cadastro de foto');
                     })
-                    .catch(error => console.log(error.message));                
+                    .catch(error => {
+                        console.log(error.message);
+                        ToastService.error(this.idToast, error.message, 'Cadastro de foto')
+                    });                
             },
             alterarFoto() {
                 this.fotoService.alterar(this.foto)
                     .then( () => {
-                        console.log('Foto alterada com sucesso')
-                        this.$router.push({name: 'home'});
+                        ToastService.success(this.idToast, 'Foto alterada com sucesso', 'Cadastro de foto');
                     })
-                    .catch(error => console.log(error.message))
+                    .catch(error => {
+                        console.log(error.message)
+                        ToastService.error(this.idToast, error.message, 'Cadastro de foto')
+                    });
             },
             limpar() {
                 this.$validator.reset();

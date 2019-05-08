@@ -1,0 +1,32 @@
+.toast {
+    position: fixed; 
+    top: 80px; 
+    right: 0; 
+    z-index: 99;
+    min-width: 300px;
+}
+.toast-header, .toast-body {
+    background-color: #fff;
+}
+.toast-type {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.toast-type.success {
+    background-color: #007aff;
+}
+.toast-type.warning {
+    background-color: #f3f70891;
+}
+.toast-type.error {
+    background-color: red;
+}
+
+@media(max-width: 768px) {
+    .toast {
+        width: 100%;
+    }
+}

@@ -11,7 +11,11 @@ $card-shadow-color: #bebaba;
 .card:last-child {
     margin-right: 0;
 }
-
+.card-text {
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}
 .card-img-top {
     min-height: 200px;
 }
