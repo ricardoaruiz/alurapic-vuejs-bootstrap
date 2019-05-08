@@ -11,6 +11,20 @@ $error-message-color: red;
 .form-group .btn {
     margin-right: 5px;
 }
+.form-group .btn:last-child {
+    margin-right: 0;
+}
 .foto-preview {
     width: 100%;
+}
+
+@media(max-width: 768px) {
+    .form-group .btn {
+        width: 100%;
+        margin-bottom: 5px;
+        margin-right: 0;
+    }
+    .form-group .btn:last-child {
+        margin-bottom: 0;
+    }
 }

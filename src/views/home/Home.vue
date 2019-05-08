@@ -22,12 +22,16 @@
         <!-- Fotos -->
         <CardDeck>
             <Card v-for="foto of fotosFiltradas" :key="foto.url" :foto="foto" :showFooter="true">
-                <div slot="footer">
+                <div slot="footer" class="footer">
                     <div class="row d-flex justify-content-around">
-                        <button class="btn btn-primary mb-1" @click="alterarFoto(foto)">Alterar</button>
-                        
-                        <button class="btn btn-danger mb-1" 
-                                @click="removerFoto(foto)">
+                        <button class="btn btn-primary" 
+                                @click="alterarFoto(foto)">
+                            Alterar
+                        </button>
+
+                        <button class="btn btn-danger" 
+                                @click="removerFoto(foto)" 
+                                v-modal-handler="idModalExclusao">
                             Excluir
                         </button>
 
@@ -52,7 +56,7 @@
     import CardDeck from '@/components/card-deck/CardDeck';
     import Card from '@/components/card/Card';
     import Modal from '@/components/modal/Modal';
-    import ModalService from '@/components/modal/ModalService';
+    import '@/components/modal/ModalDirective';
 
     export default {
         components: {
@@ -91,7 +95,6 @@
         methods: {
             removerFoto(foto) {
                 this.fotoSelecionada = foto
-                ModalService.open(this.idModalExclusao);
             },
             confirmaRemoverFoto() {
                 this.fotoService.remover(this.fotoSelecionada)

@@ -45,9 +45,9 @@
             </div>
 
             <!-- Preview da foto -->
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6" v-show="foto.url">
                 <label>Foto</label>
-                <Card :foto="foto" v-show="foto.url" class="foto-preview"/>
+                <Card :foto="foto" class="foto-preview"/>
             </div>
 
             <!-- Botões de controle da página -->
